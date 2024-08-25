@@ -200,7 +200,7 @@ public class SignUp extends JFrame implements ActionListener {
         next.setBackground(Color.BLACK);
         next.setForeground(Color.WHITE);
         next.setBounds(620, 710, 80, 30);
-        //next.addActionListener(this);
+        next.addActionListener(this);
         add(next);
 
         getContentPane().setBackground(new Color(222, 255, 228));
@@ -212,32 +212,33 @@ public class SignUp extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        String formno = first;
-//        String name = textName.getText();
-//        String fname = textFname.getText();
-//        String dob = dayChooser.getSelectedItem() + "/" + monthChooser.getSelectedItem() + "/" + yearChooser.getSelectedItem();
-//        String gender = (r1.isSelected()) ? "Male" : "Female";
-//        String email = textEmail.getText();
-//        String marital = (m1.isSelected()) ? "Married" : (m2.isSelected()) ? "Unmarried" : "Other";
-//        String address = textAdd.getText();
-//        String city = textcity.getText();
-//        String pincode = textPin.getText();
-//        String state = textState.getText();
-//
-//        try {
-//            if (textName.getText().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Name is Required");
-//            } else {
-//                //Conn c = new Conn();
-//                String query = "insert into signup values('" + formno + "', '" + name + "', '" + fname + "', '" + dob + "', '" + gender + "', '" + email + "', '" + marital + "', '" + address + "', '" + city + "', '" + pincode + "', '" + state + "')";
-//                c.s.executeUpdate(query);
-//
-//                setVisible(false);
-//            //    new Signup2().setVisible(true);
-//            }
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
+        String formno = first;
+        String name = textName.getText();
+        String fname = textFname.getText();
+        //String dob = dayChooser.getSelectedItem() + "/" + monthChooser.getSelectedItem() + "/" + yearChooser.getSelectedItem();
+        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+        String gender = (r1.isSelected()) ? "Male" : "Female";
+        String email = textEmail.getText();
+        String marital = (m1.isSelected()) ? "Married" : (m2.isSelected()) ? "Unmarried" : "Other";
+        String address = textAdd.getText();
+        String city = textCity.getText();
+        String pincode = textPin.getText();
+        String state = textState.getText();
+
+        try {
+            if (textName.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Name is Required");
+            } else {
+                Connn c = new Connn();
+                String query = "insert into signup values('" + formno + "', '" + name + "', '" + fname + "', '" + dob + "', '" + gender + "', '" + email + "', '" + marital + "', '" + address + "', '" + city + "', '" + pincode + "', '" + state + "')";
+                c.statement.executeUpdate(query);
+                setVisible(false);
+                new SignUp2(first);
+                setVisible(true);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
